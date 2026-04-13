@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beverage Impact Partners — Beverage Guidance & Data Intelligence</title>
+<meta name="description" content="Beverage Impact Partners delivers live depletion dashboards, supplier guidance, and distributor intelligence — built for the three-tier beverage system.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+.nav{background:#0a0a0a;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1a1a1a;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:13px;font-weight:500;letter-spacing:0.06em;color:#fff;text-decoration:none;}
+.nav-logo span{color:#E85D00;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:11px;color:#888;text-decoration:none;letter-spacing:0.08em;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{font-size:11px;font-weight:500;padding:8px 18px;background:#E85D00;color:#fff;border:none;border-radius:4px;cursor:pointer;letter-spacing:0.06em;text-decoration:none;}
+.hero{background:#0a0a0a;padding:80px 40px 64px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.hero-line{width:32px;height:2px;background:#E85D00;}
+.hero-tag{font-size:10px;font-weight:500;color:#E85D00;letter-spacing:0.14em;}
+.hero h1{font-size:52px;font-weight:500;line-height:1.05;color:#fff;margin-bottom:24px;max-width:720px;}
+.hero h1 em{font-style:normal;color:#E85D00;}
+.hero-body{font-size:15px;color:#777;line-height:1.75;max-width:500px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-o{font-size:13px;font-weight:500;padding:13px 26px;background:#E85D00;color:#fff;border:2px solid #E85D00;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-ghost{font-size:13px;font-weight:500;padding:13px 26px;background:#fff;color:#0a0a0a;border:2px solid #fff;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;}
+.ticker{background:#E85D00;padding:16px 40px;display:grid;grid-template-columns:repeat(4,1fr);}
+.tick{padding:0 20px;border-right:1px solid rgba(255,255,255,0.2);}
+.tick:first-child{padding-left:0;}
+.tick:last-child{border-right:none;}
+.tick-n{font-size:22px;font-weight:500;color:#fff;}
+.tick-l{font-size:10px;color:rgba(255,255,255,0.7);margin-top:2px;letter-spacing:0.06em;}
+.sec-dark{background:#0a0a0a;padding:72px 40px;}
+.sec-mid{background:#111;padding:72px 40px;}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.eyebrow-line{width:24px;height:2px;background:#E85D00;}
+.eyebrow-text{font-size:10px;font-weight:500;color:#E85D00;letter-spacing:0.14em;}
+.sec-h-w{font-size:34px;font-weight:500;color:#fff;line-height:1.15;margin-bottom:14px;}
+.sec-sub-w{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.75;max-width:480px;margin-bottom:40px;}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1a1a1a;border:1px solid #1a1a1a;border-radius:8px;overflow:hidden;}
+.pillar{background:#111;padding:28px 22px;}
+.p-num{font-size:10px;font-weight:500;color:#E85D00;letter-spacing:0.12em;margin-bottom:14px;}
+.p-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:10px;}
+.p-body{font-size:12px;color:#666;line-height:1.7;margin-bottom:18px;}
+.p-list{list-style:none;}
+.p-list li{font-size:11px;color:#555;padding:5px 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:flex-start;gap:8px;}
+.p-list li:last-child{border-bottom:none;}
+.p-dot{width:4px;height:4px;border-radius:50%;background:#E85D00;flex-shrink:0;margin-top:5px;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.why-h{font-size:48px;font-weight:500;line-height:1.05;color:#fff;margin-bottom:20px;}
+.why-h em{font-style:normal;color:#E85D00;}
+.why-body{font-size:14px;color:#666;line-height:1.8;margin-bottom:16px;}
+.comp-table{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;}
+.comp-table th{padding:10px 14px;text-align:left;font-size:10px;font-weight:500;color:#555;letter-spacing:0.1em;border-bottom:1px solid #1a1a1a;background:#0d0d0d;}
+.comp-table th.bip{color:#E85D00;}
+.comp-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid #1a1a1a;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table td.cap{color:#aaa;font-weight:500;}
+.comp-table td.bip-val{color:#E85D00;font-weight:500;}
+.comp-table td.none{color:#333;}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.svc-card{background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:24px;}
+.svc-num{font-size:10px;color:#E85D00;font-weight:500;letter-spacing:0.1em;margin-bottom:12px;}
+.svc-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:10px;}
+.svc-body{font-size:12px;color:#666;line-height:1.7;margin-bottom:14px;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.svc-tag{font-size:10px;color:#555;background:#1a1a1a;border:1px solid #222;border-radius:3px;padding:3px 9px;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.about-body{font-size:14px;color:#666;line-height:1.8;margin-bottom:18px;}
+.val-grid{display:flex;flex-direction:column;gap:16px;margin-top:8px;}
+.val{display:flex;gap:14px;}
+.val-bar{width:3px;background:#E85D00;border-radius:2px;flex-shrink:0;}
+.val-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:3px;}
+.val-body{font-size:12px;color:#555;line-height:1.6;}
+.founder-card{background:#111;border:1px solid #1a1a1a;border-radius:8px;overflow:hidden;}
+.founder-photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;display:block;}
+.founder-info{padding:24px;}
+.fc-name{font-size:18px;font-weight:500;color:#fff;margin-bottom:4px;}
+.fc-role{font-size:11px;color:#E85D00;letter-spacing:0.08em;margin-bottom:14px;}
+.fc-bio{font-size:12px;color:#555;line-height:1.7;}
+.fc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.fc-tag{font-size:10px;color:#444;background:#1a1a1a;border:1px solid #222;border-radius:3px;padding:3px 9px;}
+.pilot-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.ps{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #1a1a1a;}
+.ps:last-child{border-bottom:none;}
+.ps-num{width:28px;height:28px;border-radius:50%;background:#E85D00;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;flex-shrink:0;}
+.ps-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:3px;}
+.ps-body{font-size:12px;color:#555;line-height:1.6;}
+.pilot-box{background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:28px;}
+.pb-tag{font-size:10px;color:#E85D00;font-weight:500;letter-spacing:0.12em;margin-bottom:10px;}
+.pb-h{font-size:20px;font-weight:500;color:#fff;margin-bottom:10px;}
+.pb-body{font-size:13px;color:#555;line-height:1.7;margin-bottom:20px;}
+.pb-items{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+.pb-item{display:flex;align-items:center;gap:8px;font-size:12px;color:#666;}
+.pb-dot{width:6px;height:6px;border-radius:50%;background:#E85D00;flex-shrink:0;}
+.pb-btn{width:100%;padding:12px;background:#E85D00;color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;letter-spacing:0.04em;}
+.cta-band{background:#E85D00;padding:72px 40px;text-align:center;}
+.cta-h{font-size:44px;font-weight:500;color:#fff;line-height:1.1;margin-bottom:16px;}
+.cta-sub{font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:36px;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-btn-w{font-size:12px;font-weight:500;padding:14px 28px;background:#fff;color:#E85D00;border:2px solid #fff;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;}
+.cta-btn-o{font-size:12px;font-weight:500;padding:14px 28px;background:transparent;color:#fff;border:2px solid #fff;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.ci{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px;}
+.ci-bar{width:3px;background:#E85D00;flex-shrink:0;border-radius:2px;}
+.ci-label{font-size:10px;color:#E85D00;letter-spacing:0.1em;font-weight:500;margin-bottom:3px;}
+.ci-val{font-size:13px;color:#fff;}
+.ci-val a{color:#fff;text-decoration:none;}
+.form-g{margin-bottom:14px;}
+.form-l{font-size:10px;color:#555;font-weight:500;letter-spacing:0.08em;margin-bottom:6px;display:block;}
+.form-i{width:100%;padding:10px 12px;border:1px solid #333;border-radius:4px;font-size:12px;color:#fff;background:#111;outline:none;}
+.form-i:focus{border-color:#E85D00;}
+.form-s{width:100%;padding:10px 12px;border:1px solid #333;border-radius:4px;font-size:12px;color:#fff;background:#111;outline:none;}
+.form-s:focus{border-color:#E85D00;}
+.form-t{width:100%;padding:10px 12px;border:1px solid #333;border-radius:4px;font-size:12px;color:#fff;background:#111;height:100px;resize:vertical;outline:none;}
+.form-t:focus{border-color:#E85D00;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-submit{width:100%;padding:12px;background:#E85D00;color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;margin-top:4px;}
+.form-success{display:none;background:#0f3d2e;border:1px solid #1D9E75;border-radius:6px;padding:16px;color:#1D9E75;font-size:13px;margin-top:12px;text-align:center;}
+.footer{background:#050505;padding:48px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;border-top:1px solid #111;}
+.fl{font-size:13px;font-weight:500;color:#fff;}
+.fl span{color:#E85D00;}
+.fl-sub{font-size:12px;color:#333;line-height:1.7;margin-top:8px;}
+.fh{font-size:10px;font-weight:500;color:#555;letter-spacing:0.12em;margin-bottom:12px;}
+.flinks{display:flex;flex-direction:column;gap:8px;}
+.flinks a{font-size:12px;color:#333;text-decoration:none;}
+.flinks a:hover{color:#E85D00;}
+.fbot{background:#030303;padding:14px 40px;display:flex;justify-content:space-between;border-top:1px solid #0d0d0d;flex-wrap:wrap;gap:8px;}
+.fcopy{font-size:10px;color:#444;}
+@media(max-width:768px){
+  .nav{padding:12px 20px;}
+  .nav-links{display:none;}
+  .hero{padding:48px 20px 40px;}
+  .hero h1{font-size:32px;}
+  .ticker{grid-template-columns:repeat(2,1fr);padding:16px 20px;}
+  .tick{padding:8px 12px;}
+  .sec-dark,.sec-mid{padding:48px 20px;}
+  .pillar-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .svc-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+  .pilot-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer{grid-template-columns:1fr 1fr;padding:32px 20px;}
+  .fbot{padding:12px 20px;}
+  .cta-band{padding:48px 20px;}
+  .cta-h{font-size:28px;}
+  .why-h{font-size:32px;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#home" class="nav-logo"><span>BEVERAGE</span> IMPACT PARTNERS</a>
+  <div class="nav-links">
+    <a href="#about">ABOUT</a>
+    <a href="#services">SERVICES</a>
+    <a href="#why">DATA &amp; TECH</a>
+    <a href="#why">WHY US</a>
+    <a href="#pilot">PILOT</a>
+  </div>
+  <a href="#contact" class="nav-cta">GET STARTED</a>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-eyebrow"><div class="hero-line"></div><span class="hero-tag">BEVERAGE GUIDANCE &amp; DATA INTELLIGENCE</span></div>
+  <h1>We turn depletion data<br>into <em>decisions that<br>drive growth.</em></h1>
+  <p class="hero-body">Live dashboards, supplier guidance, and distributor intelligence &mdash; built by operators who have held roles across all three tiers of the beverage system.</p>
+  <div class="hero-btns">
+    <a href="#why" class="btn-o">See how it works</a>
+    <a href="#pilot" class="btn-ghost">Start a free pilot</a>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="tick"><div class="tick-n">Live data feeds</div><div class="tick-l">REAL-TIME DEPLETION INTELLIGENCE</div></div>
+  <div class="tick"><div class="tick-n">3 pillars</div><div class="tick-l">DASHBOARDS &middot; SUPPLIER &middot; DISTRIBUTOR</div></div>
+  <div class="tick"><div class="tick-n">60 days</div><div class="tick-l">FREE PILOT PROGRAM</div></div>
+  <div class="tick"><div class="tick-n">100%</div><div class="tick-l">BEVERAGE INDUSTRY FOCUS</div></div>
+</div>
+
+<section id="services" class="sec-dark">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">WHAT WE DO</span></div>
+  <h2 class="sec-h-w">Three pillars. One partner.</h2>
+  <p class="sec-sub-w">Every engagement is built on the same foundation &mdash; live data, commercial strategy, and hands-on execution support.</p>
+  <div class="pillar-grid">
+    <div class="pillar"><div class="p-num">01 &mdash; DEPLETION DASHBOARDS</div><div class="p-title">Live data intelligence</div><div class="p-body">API-connected Power BI dashboards delivering real-time visibility into velocity, distribution, voids, and promotional ROI &mdash; updated every week.</div><ul class="p-list"><li><span class="p-dot"></span>Automated depletion pulls via live data feed</li><li><span class="p-dot"></span>Syndicated data integration</li><li><span class="p-dot"></span>Velocity, distribution &amp; OOS views</li><li><span class="p-dot"></span>Promotional ROI modeling</li><li><span class="p-dot"></span>Custom branded dashboard delivery</li></ul></div>
+    <div class="pillar"><div class="p-num">02 &mdash; SUPPLIER GUIDANCE</div><div class="p-title">Commercial strategy &amp; execution</div><div class="p-body">Data-informed strategy built by operators who have held supplier, distributor, and retail roles &mdash; not traditional advisors working from the outside.</div><ul class="p-list"><li><span class="p-dot"></span>Pricing &amp; promotions architecture</li><li><span class="p-dot"></span>Portfolio rationalization</li><li><span class="p-dot"></span>Innovation launch strategy</li><li><span class="p-dot"></span>Distributor relationship management</li><li><span class="p-dot"></span>Market expansion planning</li></ul></div>
+    <div class="pillar"><div class="p-num">03 &mdash; DISTRIBUTOR GUIDANCE</div><div class="p-title">Supplier portfolio intelligence</div><div class="p-body">KPI frameworks, joint business planning, and internal analytics infrastructure that helps wholesalers manage their supplier portfolio with data-driven clarity.</div><ul class="p-list"><li><span class="p-dot"></span>Scorecard &amp; KPI framework design</li><li><span class="p-dot"></span>Joint business plan facilitation</li><li><span class="p-dot"></span>Incentive program design</li><li><span class="p-dot"></span>Internal Power BI analytics buildout</li><li><span class="p-dot"></span>Supplier portfolio management</li></ul></div>
+  </div>
+</section>
+
+<section id="why" class="sec-mid">
+  <div class="why-grid">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">WHY BIP</span></div>
+      <div class="why-h">Operators,<br><em>not advisors.</em></div>
+      <p class="why-body">Our team has held roles at the supplier, distributor, and retail levels &mdash; giving us an integrated perspective that pure-play advisory firms cannot replicate.</p>
+      <p class="why-body">The Power BI dashboards become part of your weekly operating rhythm, creating retention through utility. Our live data feed connection provides a data moat that competitors cannot easily replicate.</p>
+    </div>
+    <div>
+      <table class="comp-table">
+        <thead><tr><th>CAPABILITY</th><th>TRADITIONAL</th><th>FREELANCERS</th><th class="bip">BIP</th></tr></thead>
+        <tbody>
+          <tr><td class="cap">Three-tier system depth</td><td class="none">Limited</td><td class="none">Varies</td><td class="bip-val">&#10003; Core</td></tr>
+          <tr><td class="cap">Live data API access</td><td class="none">None</td><td class="none">Rarely</td><td class="bip-val">&#10003; Native</td></tr>
+          <tr><td class="cap">Power BI dashboard delivery</td><td class="none">None</td><td class="none">None</td><td class="bip-val">&#10003; Built in</td></tr>
+          <tr><td class="cap">Distributor JBP facilitation</td><td class="none">Limited</td><td class="none">Varies</td><td class="bip-val">&#10003; Standard</td></tr>
+          <tr><td class="cap">Mandate &amp; void tracking</td><td class="none">None</td><td class="none">None</td><td class="bip-val">&#10003; Proprietary</td></tr>
+          <tr><td class="cap">Scalable service packages</td><td class="none">No</td><td class="none">No</td><td class="bip-val">&#10003; All sizes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">SERVICES</span></div>
+  <h2 class="sec-h-w">Built for the beverage business.</h2>
+  <p class="sec-sub-w">Every service is designed specifically for the supplier-distributor relationship. No generic frameworks.</p>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-num">01 &mdash; DEPLETION DASHBOARDS</div><div class="svc-title">Depletion &amp; Power BI delivery</div><div class="svc-body">Automated weekly depletion pulls from the wholesaler network via live data API, delivered as Power BI dashboards &mdash; velocity, distribution, voids, and pricing in one view.</div><div class="svc-tags"><span class="svc-tag">Live data API</span><span class="svc-tag">Power BI</span><span class="svc-tag">Weekly refresh</span><span class="svc-tag">Multi-state</span></div></div>
+    <div class="svc-card"><div class="svc-num">02 &mdash; DATA INTEGRATION</div><div class="svc-title">Syndicated data integration</div><div class="svc-body">Consumer sell-through data from syndicated sources layered into your dashboard environment &mdash; competitive benchmarking, category share, and promotional lift analysis in one place.</div><div class="svc-tags"><span class="svc-tag">Syndicated data</span><span class="svc-tag">Category share</span><span class="svc-tag">Promo ROI</span><span class="svc-tag">Competitive bench</span></div></div>
+    <div class="svc-card"><div class="svc-num">03 &mdash; COMPLIANCE MODEL</div><div class="svc-title">Mandate &amp; void tracking</div><div class="svc-body">A proprietary compliance model crossing mandate authorizations against depletion data &mdash; surfacing void accounts, revenue at risk, and execution targets every week.</div><div class="svc-tags"><span class="svc-tag">Chain compliance</span><span class="svc-tag">Void heat map</span><span class="svc-tag">Revenue at risk</span><span class="svc-tag">Rep scorecards</span></div></div>
+    <div class="svc-card"><div class="svc-num">04 &mdash; DISTRIBUTOR ANALYTICS</div><div class="svc-title">RAS-agnostic data buildout</div><div class="svc-body">For wholesalers running proprietary route accounting systems &mdash; we extract, normalize, and visualize your depletion data in Power BI regardless of your current tech stack.</div><div class="svc-tags"><span class="svc-tag">RAS-agnostic</span><span class="svc-tag">Data normalization</span><span class="svc-tag">Route reporting</span><span class="svc-tag">Supplier views</span></div></div>
+  </div>
+</section>
+
+<section id="about" class="sec-mid">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">ABOUT</span></div>
+  <h2 class="sec-h-w">Operators, not advisors.</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-body">Beverage Impact Partners was built by someone who has held roles at the supplier, distributor, and retail level &mdash; which means we understand the commercial realities on all sides of the three-tier relationship, not just one.</p>
+      <p class="about-body">We combine hands-on industry experience with live data infrastructure. We don&rsquo;t just recommend &mdash; we build the dashboards, connect the data feeds, and measure the impact of every initiative we deploy.</p>
+      <p class="about-body">Our clients don&rsquo;t pay for decks and recommendations that collect dust. They pay for decisions, executed.</p>
+      <div class="val-grid">
+        <div class="val"><div class="val-bar"></div><div><div class="val-title">Data-first, always</div><div class="val-body">Every recommendation we make is grounded in live depletion data, not gut instinct or industry anecdotes.</div></div></div>
+        <div class="val"><div class="val-bar"></div><div><div class="val-title">Operators, not observers</div><div class="val-body">We have sat in distributor meetings, built sales teams, and managed supplier relationships at scale.</div></div></div>
+        <div class="val"><div class="val-bar"></div><div><div class="val-title">Measurable impact</div><div class="val-body">Every engagement starts with a baseline and ends with a documented result. If we can&rsquo;t measure it, we don&rsquo;t claim it.</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="founder-card">
+        <img src="JJ_Profile_Image.png" alt="Jonathon Jordan" class="founder-photo" />
+        <div class="founder-info">
+          <div class="fc-name">Jonathon Jordan</div>
+          <div class="fc-role">FOUNDER &amp; PRINCIPAL</div>
+          <div class="fc-bio">Jonathon Jordan is the founder of Beverage Impact Partners, a beverage execution partner purpose-built for the three-tier system. With hands-on experience across the supplier, distributor, and retail levels, Jonathon combines deep commercial strategy expertise with live data infrastructure &mdash; including Power BI dashboards and depletion analytics &mdash; to help beverage brands and distributors turn data into decisions that drive measurable growth.</div>
+          <div class="fc-tags"><span class="fc-tag">Supplier</span><span class="fc-tag">Distributor</span><span class="fc-tag">Live data feeds</span><span class="fc-tag">Power BI</span><span class="fc-tag">Syndicated data</span><span class="fc-tag">Three-tier system</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pilot" class="sec-dark">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">PILOT PROGRAM</span></div>
+  <h2 class="sec-h-w">See the value before you commit.</h2>
+  <p class="sec-sub-w">A no-cost, 60-day pilot engagement for distributors and suppliers who want to see data-driven guidance in action &mdash; using your own data, no new technology required.</p>
+  <div class="pilot-grid">
+    <div>
+      <div class="ps"><div class="ps-num">1</div><div><div class="ps-title">Data collection &amp; onboarding</div><div class="ps-body">Export depletion data from your existing route accounting system. No new technology required. Days 1&ndash;10.</div></div></div>
+      <div class="ps"><div class="ps-num">2</div><div><div class="ps-title">Dashboard build</div><div class="ps-body">We normalize your data and build a live Power BI dashboard &mdash; velocity, distribution, and OOS views. Days 11&ndash;25.</div></div></div>
+      <div class="ps"><div class="ps-num">3</div><div><div class="ps-title">Analysis &amp; findings</div><div class="ps-body">We identify your top 3 commercial opportunities with supporting data and present to your leadership. Days 26&ndash;35.</div></div></div>
+      <div class="ps"><div class="ps-num">4</div><div><div class="ps-title">Execute one recommendation</div><div class="ps-body">We activate one priority initiative with your team and measure against a pre-agreed baseline. Days 36&ndash;55.</div></div></div>
+      <div class="ps"><div class="ps-num">5</div><div><div class="ps-title">Results &amp; case study</div><div class="ps-body">We document the outcome and deliver a final report. No obligation to continue. Days 56&ndash;60.</div></div></div>
+    </div>
+    <div>
+      <div class="pilot-box">
+        <div class="pb-tag">WHAT YOU RECEIVE</div>
+        <div class="pb-h">A complete data engagement &mdash; at zero cost.</div>
+        <div class="pb-body">At the end of 60 days you will have a working Power BI dashboard, a documented commercial opportunity, and a clear picture of what a paid engagement delivers.</div>
+        <div class="pb-items">
+          <div class="pb-item"><div class="pb-dot"></div>Working Power BI dashboard</div>
+          <div class="pb-item"><div class="pb-dot"></div>Top 3 opportunities identified</div>
+          <div class="pb-item"><div class="pb-dot"></div>One executed recommendation</div>
+          <div class="pb-item"><div class="pb-dot"></div>Written findings report</div>
+          <div class="pb-item"><div class="pb-dot"></div>Ongoing opportunity backlog</div>
+        </div>
+        <a href="#contact" class="pb-btn" style="display:block;text-align:center;text-decoration:none;">APPLY FOR THE PILOT &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="cta-h">Let&rsquo;s build your<br>data advantage.</div>
+  <div class="cta-sub">Ready to turn your depletion data into decisions? Start with a free consultation.</div>
+  <div class="cta-btns">
+    <a href="#contact" class="cta-btn-w">Start a free pilot</a>
+    <a href="#contact" class="cta-btn-o">Schedule a call</a>
+  </div>
+</div>
+
+<section id="contact" class="sec-dark">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">CONTACT</span></div>
+  <h2 class="sec-h-w">Let&rsquo;s talk about your data.</h2>
+  <p class="sec-sub-w">Whether you&rsquo;re a supplier looking for depletion visibility or a distributor building out analytics &mdash; the first conversation is always free.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="ci"><div class="ci-bar"></div><div><div class="ci-label">EMAIL</div><div class="ci-val"><a href="mailto:jjordan@bevimpactpartners.com">jjordan@bevimpactpartners.com</a></div></div></div>
+      <div class="ci"><div class="ci-bar"></div><div><div class="ci-label">PHONE</div><div class="ci-val"><a href="tel:5033331463">503-333-1463</a></div></div></div>
+      <div class="ci"><div class="ci-bar"></div><div><div class="ci-label">LOCATION</div><div class="ci-val">United States &mdash; remote delivery, national reach</div></div></div>
+      <div style="margin-top:28px;padding:20px;background:#111;border:1px solid #1a1a1a;border-radius:8px;">
+        <div style="font-size:10px;color:#E85D00;letter-spacing:0.1em;font-weight:500;margin-bottom:8px;">NOT READY YET?</div>
+        <div style="font-size:12px;color:#555;line-height:1.7;">Start with our free pilot &mdash; no commitment required. We build a working dashboard from your data and show you what&rsquo;s possible before you sign anything.</div>
+      </div>
+    </div>
+    <div>
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-g"><label class="form-l">FIRST NAME</label><input class="form-i" name="first_name" placeholder="First name" required /></div>
+          <div class="form-g"><label class="form-l">LAST NAME</label><input class="form-i" name="last_name" placeholder="Last name" required /></div>
+        </div>
+        <div class="form-g"><label class="form-l">COMPANY</label><input class="form-i" name="company" placeholder="Company name" required /></div>
+        <div class="form-g"><label class="form-l">EMAIL</label><input class="form-i" type="email" name="email" placeholder="you@company.com" required /></div>
+        <div class="form-g"><label class="form-l">I AM A...</label>
+          <select class="form-s" name="type">
+            <option>Supplier / producer</option>
+            <option>Distributor / wholesaler</option>
+            <option>Both</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-g"><label class="form-l">WHAT ARE YOU LOOKING FOR?</label>
+          <select class="form-s" name="interest">
+            <option>Depletion dashboards &amp; data</option>
+            <option>Supplier guidance</option>
+            <option>Distributor analytics</option>
+            <option>Free pilot program</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-g"><label class="form-l">ANYTHING ELSE?</label><textarea class="form-t" name="message" placeholder="Tell us about your current situation — data access, distribution footprint, what's not working..."></textarea></div>
+        <button type="submit" class="form-submit">SEND MESSAGE</button>
+        <div class="form-success" id="form-success">&#10003; &nbsp;Message sent! We&rsquo;ll be in touch within one business day.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div>
+    <div class="fl"><span>BEVERAGE</span> IMPACT PARTNERS</div>
+    <div class="fl-sub">Depletion dashboards, supplier guidance,<br>and distributor intelligence &mdash; built for<br>the three-tier beverage system.</div>
+  </div>
+  <div><div class="fh">SERVICES</div><div class="flinks"><a href="#services">Depletion dashboards</a><a href="#services">Supplier guidance</a><a href="#services">Distributor analytics</a><a href="#services">Mandate tracking</a></div></div>
+  <div><div class="fh">COMPANY</div><div class="flinks"><a href="#about">About</a><a href="#pilot">Pilot program</a><a href="#contact">Contact</a></div></div>
+  <div><div class="fh">CONTACT</div><div class="flinks"><a href="mailto:jjordan@bevimpactpartners.com">jjordan@bevimpactpartners.com</a><a href="tel:5033331463">503-333-1463</a><a href="#contact">United States</a></div></div>
+</div>
+<div class="fbot">
+  <span class="fcopy">&copy; 2025 Beverage Impact Partners. All rights reserved.</span>
+  <span class="fcopy">bevimpactpartners.com</span>
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  var btn = document.querySelector('.form-submit');
+  btn.textContent = 'SENDING...';
+  btn.disabled = true;
+  setTimeout(function() {
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }, 800);
+}
+</script>
+
+</body>
+</html>
